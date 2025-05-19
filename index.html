@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
+  <!-- Replace the content tag with appropriate information -->
+  <meta name="description" content="WAM is a unifying perspective on feature attribution.">
+  <meta property="og:title" content="SOCIAL MEDIA TITLE TAG"/>
+  <meta property="og:description" content="SOCIAL MEDIA DESCRIPTION TAG TAG"/>
+  <meta property="og:url" content="URL OF THE WEBSITE"/>
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
+  <meta property="og:image" content="static/image/your_banner_image.png" />
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+
+
+  <meta name="twitter:title" content="TWITTER BANNER TITLE META TAG">
+  <meta name="twitter:description" content="TWITTER BANNER DESCRIPTION META TAG">
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
+  <meta name="twitter:image" content="static/images/your_twitter_banner_image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <!-- Keywords for your paper to be indexed by-->
+  <meta name="keywords" content="Interpretability, Feature attribution, Wavelet, Images, Audio, 3D, Volumes">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <title>WAM</title>
+  <link rel="icon" type="image/x-icon" href="static/images/favicon-32x32.png">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+  rel="stylesheet">
+
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script src="static/js/bulma-carousel.min.js"></script>
+  <script src="static/js/bulma-slider.min.js"></script>
+  <script src="static/js/index.js"></script>
+</head>
+<body>
+
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">One Wave To Explain Them All: A Unifying Perspective On Feature Attribution</h1>
+            <h2 class="title is-4 publication-title">Accepted at ICML 2025</h2>
+            <div class="is-size-5 publication-authors">
+              <!-- Paper authors -->
+              <span class="author-block">
+                <a href="https://gabrielkasmi.github.io/" target="_blank">Gabriel Kasmi</a> <sup>1,2</sup>,</span>
+                <span class="author-block">
+                  <a href="https://amandinebtto.github.io/" target="_blank">Amandine Brunetto</a> <sup>1</sup>,</span>
+                  <span class="author-block">
+                    <a href="http://thomasfel.fr/" target="_blank">Thomas Fel</a><sup>3</sup>,</span>
+                  <span class="author-block">
+                    <a href="https://jayneelparekh.github.io/" target="_blank">Jayneel Parekh</a><sup>4</sup>
+                  </span>
+                  </div>
+
+                  <div class="is-size-5 publication-authors">
+                    <span class="author-block"><sup>1</sup>Mines Paris - PSL University,</span>
+                    <span class="author-block"><sup>2</sup>RTE France, </span>
+                    <span class="author-block"><sup>3</sup>Kempner Institute, Harvard University, </span>
+                    <span class="author-block"><sup>4</sup>ISIR, Sorbonne Université, </span>
+                    <!-- <span class="eql-cntrb"><small><br><sup>*</sup>Indicates Equal Contribution</small></span> -->
+                  </div>
+
+                  <div class="column has-text-centered">
+                    <div class="publication-links">
+                         <!-- Arxiv PDF link -->
+                      <span class="link-block">
+                        <a href="https://arxiv.org/pdf/2410.01482.pdf" target="_blank"
+                        class="external-link button is-normal is-rounded is-dark">
+                        <span class="icon">
+                          <i class="fas fa-file-pdf"></i>
+                        </span>
+                        <span>ArXiv</span>
+                      </a>
+                    </span>
+
+                    <!-- Supplementary PDF link -->
+                    <!--
+                    <span class="link-block">
+                      <a href="static/pdfs/supplementary_material.pdf" target="_blank"
+                      class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        <i class="fas fa-file-pdf"></i>
+                      </span>
+                      <span>Supplementary</span>
+                    </a>
+                  </span> 
+                  -->
+
+                  <!-- Github link -->
+                  <span class="link-block">
+                    <a href="https://github.com/gabrielkasmi/wam" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span>
+
+                <!-- OpenReview link : To be added -->
+                <!--
+                <span class="link-block">
+                  <a href="https://openreview.net/" target="_blank"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>OpenReview</span>
+                </a>
+              </span>
+              -->
+
+                <!-- ArXiv abstract Link -->
+                <!--
+                <span class="link-block">
+                  <a href="https://arxiv.org/abs/<ARXIV PAPER ID>" target="_blank"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Teaser video-->
+<!-- 
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <video poster="" id="tree" autoplay controls muted loop height="100%">
+        <source src="static/videos/banner_video.mp4"
+        type="video/mp4">
+      </video>
+      <h2 class="subtitle has-text-centered">
+        Aliquam vitae elit ullamcorper tellus egestas pellentesque. Ut lacus tellus, maximus vel lectus at, placerat pretium mi. Maecenas dignissim tincidunt vestibulum. Sed consequat hendrerit nisl ut maximus. 
+      </h2>
+    </div>
+  </div>
+</section> 
+-->
+<!-- End teaser video -->
+
+<!-- Paper abstract -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            A major limitation of deep neural networks in safety-critical contexts is their lack of transparency. 
+            Feature attribution methods address this by identifying which features influence a model’s decisions. 
+            For high-dimensional inputs like images, attributions often appear as pixel-based heatmaps. 
+            However, extending pixel-based methods to non-image domains, leads to suboptimal explanations. 
+            This paper introduces the <b>W</b>avelet <b>A</b>ttribution <b>M</b>ethod <b>(WAM)</b>, which replaces pixels with wavelet coefficients as features for attribution. 
+            Wavelet coefficients, defined for square-integrable signals across dimensions, provide a mathematically grounded and semantically richer domain. 
+            As the wavelet domain is defined for any input dimension, it provides a unification of the feature space for attribution. 
+            We demonstrate WAM's effectiveness on audio, images, and volumes, where it quantitatively matches or outperforms existing gradient-based methods. 
+            Explanations generated by WAM leverage the spatial and scale-localized properties of wavelet coefficients, capturing both the <i>where</i> and <i>what</i> of a model's focus. 
+            We illustrate this by showing how WAM relates to model robustness, enables deeper volume interpretation, and identifies key audio components in noisy samples.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End paper abstract -->
+
+<!-- Teaser image -->
+<section class="section">
+  <div class="container is-max-desktop content">
+    <h2 class="title is-3">WAM overview</h2>
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <img src="static/images/WAM_overview.png" alt="Method Overview"/>
+        <br><br>
+      </div>
+    </div>
+    <div class="columns is-centered has-text-centered">
+      WAM explains any input modality by decomposing the model’s decision in the wavelet domain. It computes the gradient of the model’s prediction with respect to the wavelet coefficients of the input modality (audio, images, volumes). Unlike pixels, wavelet coefficients preserve structural information about the input signal, offering deeper insights into the model’s behavior and going beyond where it focuses.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Teaser image -->
+<!--
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body is-centered has-text-centered">
+      <img style="width: 70%;" src="static/images/WAM_overview.png" alt="WAMOverview"/>
+      <h2 style="font-size: 1em" class="subtitle has-text-centered ">
+        WAM explains any input modality by decomposing the model’s decision in the wavelet domain. It computes the gradient
+        of the model’s prediction with respect to the wavelet coefficients of the input modality (audio, images, volumes). Unlike pixels, wavelet
+        coefficients preserve structural information about the input signal, offering deeper insights into the model’s behavior and going beyond
+        where it focuses.
+      </h2>
+    </div>
+  </div>
+-->
+
+
+<!-- Image carousel -->
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3">Explanation of different modalities</h2>
+
+      <div id="results-carousel" class="carousel results-carousel">
+       <div class="item">
+        <img src="static/images/image_heatmap_decomp.png" alt="WAM on images"/>
+        <h2 class="subtitle has-text-centered" style="font-size: medium;">
+          <b> Image Explanation. </b>
+          WAM decomposes important components at multiple scales, revealing <i>what</i> the model focuses on. 
+          The same spatial location encodes different structural elements at different scales: the model predicts the elephant because of its trunk and ears, but needs both the <span style="color: #2d50ff">fine texture details</span>, the <span style="color: #f44156">intermediate-scale contours</span> and the <span style="color: #ffdd00">coarse edges</span>. 
+        </h2>
+      </div>
+      <div class="item">
+        <img src="static/images/audio_interpretation.jpg" alt="WAM on audio"/>
+        <h2 class="subtitle has-text-centered" style="font-size: medium;">
+          <b> Audio Explanation. </b>
+          The audio of the target class ('Crow') is mixed with a corrupting audio ('Chirping birds') to form the input to the classifier. 
+          Interpretation audio reconstructed with important wavelet coefficients virtually eliminate signal from the corrupting audio, and also clearly emphasize <span style="color: #078c14"> parts of the target class audio </span>.
+        </h2>
+      </div>
+      <div class="item">
+        <img src="static/images/voxel_heatmap_decomp.jpg" alt="WAM on voxels"/>
+        <h2 class="subtitle has-text-centered" style="font-size: medium;">
+          <b> Volume Explanation. </b> 
+          Multi-scale decomposition of feature importance on voxels. 
+          <span style="color: #ffdd00">Coarse scales</span> highlight the edges of the number, capturing its global structure. <span style="color: #2d50ff"> Fine scales </span> focus on the digit's center, capturing high-frequency details and localized variations.
+        </h2>
+     </div>
+  </div>
+</div>
+</div>
+</section>
+<!-- End image carousel -->
+
+
+
+
+<!-- Youtube video -->
+<!----
+<section class="hero is-small is-light">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title is-3">Video Presentation</h2>
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          
+          <div class="publication-video">
+            <iframe src="https://www.youtube.com/embed/JkaxUblCGz0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+---->
+<!-- End youtube video -->
+
+
+<!-- Video carousel -->
+<!--
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title is-3">Another Carousel</h2>
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item item-video1">
+          <video poster="" id="video1" autoplay controls muted loop height="100%">
+            <source src="static/videos/carousel1.mp4"
+            type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-video2">
+          <video poster="" id="video2" autoplay controls muted loop height="100%">
+            <source src="static/videos/carousel2.mp4"
+            type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-video3">
+          <video poster="" id="video3" autoplay controls muted loop height="100%">\
+            <source src="static/videos/carousel3.mp4"
+            type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+-->
+<!-- End video carousel -->
+
+
+<!-- Paper poster -->
+<!--
+<section class="hero is-small is-light">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title">Poster</h2>
+
+      <iframe  src="static/pdfs/sample.pdf" width="100%" height="550">
+          </iframe>
+        
+      </div>
+    </div>
+  </section>
+-->
+<!--End paper poster -->
+
+
+<!--BibTex citation -->
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      <pre><code class="c0py">@inproceedings{
+        kasmi2025WAM,
+        title={One Wave To Explain Them All: A Unifying Perspective On Feature Attribution},
+        author={Kasmi, Gabriel and Brunetto, Amandine and Fel, Thomas and Parekh, Jayneel},
+        booktitle={Forty-second International Conference on Machine Learning},
+        year={2025},
+        }</code></pre>
+    </div>
+</section>
+<!--End BibTex citation -->
+
+
+  <footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+
+          <p>
+            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a>.
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Statcounter tracking code -->
+  
+<!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
+
+    <!-- End of Statcounter Code -->
+
+  </body>
+  </html>
