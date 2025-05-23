@@ -45,17 +45,42 @@
   <script src="static/js/index.js"></script>
 
   <style>
-  .hero {
-    color: white !important;
-  }
-  .hero a {
-    color: white !important;
-    text-decoration: underline;
-  }
-  .hero a:hover {
-    color: #ddd !important;
-  }
+.hero {
+  position: relative;
+  color: white !important;
+}
+
+/* Dark overlay on the background image */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.6); /* Black with 60% opacity */
+  z-index: 0;
+}
+
+/* Ensure text appears above the overlay */
+.hero .hero-body {
+  position: relative;
+  z-index: 1;
+}
+
+/* Titles and subtitles */
+.hero .title {
+  color: white !important;
+}
+
+/* Authors and links */
+.hero a {
+  color: white !important;
+  text-decoration: underline; /* keeps link style */
+}
+
+.hero a:hover {
+  color: #ddd !important;
+}
 </style>
+
 
 </head>
 <body>
