@@ -5,7 +5,7 @@
   <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
   <!-- Replace the content tag with appropriate information -->
   <meta name="description" content="WAM is a unifying perspective on feature attribution.">
-  <meta property="og:title" content="Wavelet attribution method"/>
+  <meta property="og:title" content="WAM | Proposed approach"/>
   <meta property="og:description" content="Project page of the Wavelet Attribution Method (ICML 2025)"/>
   <meta property="og:url" content="URL OF THE WEBSITE"/>
   <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
@@ -81,6 +81,15 @@
 }
 </style>
 
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']]
+    }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" defer></script>
 
 </head>
 <body>
@@ -90,7 +99,7 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">Feature attribution in the wavelet domain</h1>
+          <h1 class="title is-1 publication-title">Feature attribution in the Wavelet domain</h1>
           <div class="column has-text-centered">
             <div class="publication-links">
               <!-- Back to Homepage link -->
@@ -119,9 +128,19 @@
 
 <div class="content has-text-justified">
   <p>
-      Some text 
+      Wavelets decompose signals into components 
+      that retain both spatial and frequency information, unlike 
+      Fourier transforms, which capture only frequency and discard 
+      spatial or temporal context. The choice of the wavelet 
+      determines what kind of structural components will be highlighted 
+      on the image. Its choice is therefore grounded in the application at hand.
     </p>
   <p>
+  A wavelet is a function $\psi \in \mathcal{H} = L^2(\mathbb{R}^n)$ that is normalized, centered at the origin, and has zero mean, i.e., $\int_{\mathbb{R}^n} \psi(x) \, dx = 0$.
+</p>
+    <p style="text-align: center;">
+  $$\mathcal{D} = \left\{ \psi_{\lambda,b}(x) = \frac{1}{\lambda^{n/2}} \, \psi\left(\frac{x - b}{\lambda} \right) \right\}_{b \in \mathbb{R}^n, \, \lambda > 0} \tag{1}$$
+  </p>
       The Wavelet Attribution Method (WAM) is a novel approach to feature attribution that leverages the wavelet transform to provide a unified perspective on model interpretability across various modalities, including images, audio, and 3D volumes. 
       By decomposing the model's decision-making process in the wavelet domain, WAM offers deeper insights into the model's behavior, revealing not only where it focuses but also how it interprets structural information in the input data.
   </p>
