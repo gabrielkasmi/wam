@@ -179,11 +179,15 @@
   </p>
 
   <p style="text-align: center;">
-    $$g(x) = \sum_{j \in \mathbb{Z}} \sum_{k \in \mathbb{Z}}
-    \mathcal{W}_{\mathrm{DWT}}(g)(j,k)\,\psi_{j,k}(x) \tag{4}$$
+    $$\forall x\in\mathbb{R}^n,\quad g(x) = \sum_{\substack{j \in \mathbb{Z} \\ k \in \mathbb{Z}^n}}
+    \langle g, \psi_{j,k} \rangle\psi_{j,k}(x), \tag{4}$$
   </p>
-
-
+<p>
+  where $\mathcal{W}_{\mathrm{DWT}}(g)(j,k)\=\langle g, \psi_{j,k} \rangle$.
+</p>
+<p>
+  The figure below illustrates the process of decomposing an input image into its wavelet components.
+</p>
 </div>
     
 
@@ -195,18 +199,42 @@
       </div>
     </div>
     <div class="columns is-centered has-text-centered">
-      Illustration of the wavelet decomposition. 
+      <b>Computation of the dyadic wavelet transform. </b> A mother wavelet $\psi$ convoluted
+      with the original image at different orientations to obtain the horizontal, vertical, and diagonal components at 
+      a given scale. The process is repeated for each scale, resulting in a multiscale decomposition of the image.
       </div>
   
   <div class="content has-text-justified">
+
+  Each dyadic wavelet coefficient $\mathcal{W}_{\mathrm{DWT}}(g)(j,k)$ quantifies the presence of 
+  features in the signal $g$ at a specific scale $2^{-j}$ and location $2^{-j}k$. Large coefficients 
+  indicate that the signal contains structures similar to the mother wavelet $\psi$ at that 
+  scale and position. In images, for example, these coefficients can highlight edges, textures, 
+  or other localized patterns, depending on the properties of $\psi$.
+</p>
 <p>
-Some more text here
+  The multiscale and localized nature of the wavelet transform allows for the 
+  analysis of both fine and coarse features, making it especially 
+  powerful for signals with hierarchical or spatially varying content.
+</p>
+<p>
+  The selection of the mother wavelet $\psi$ depends 
+  on the application.  Haar wavelets are well-suited 
+  for detecting sharp discontinuities, while smoother 
+  wavelets like Daubechies are better for representing gradual transitions.
+</p>
+<p>
+  In practice, the choice is guided by the characteristics of the data 
+  and the goals of the analysis. For image processing, wavelets that are 
+  localized in both space and frequency and have directional sensitivity 
+  are often preferred. The interpretability and effectiveness 
+  of the wavelet decomposition are directly linked to how well 
+  the chosen $\psi$ matches the underlying structures in the data.
 </p>
 </div>
 </div>  
 </div>
 </section>
-
 
 <!-- Teaser image -->
 <section class="section">
@@ -214,13 +242,98 @@ Some more text here
     <h2 class="title is-3">Feature attribution in the wavelet domain</h2>
 
 <div class="content has-text-justified">
-  <p>
-      Some text 
-    </p>
-  <p>
-      The Wavelet Attribution Method (WAM) is a novel approach to feature attribution that leverages the wavelet transform to provide a unified perspective on model interpretability across various modalities, including images, audio, and 3D volumes. 
-      By decomposing the model's decision-making process in the wavelet domain, WAM offers deeper insights into the model's behavior, revealing not only where it focuses but also how it interprets structural information in the input data.
-  </p>
+
+
+<p>
+Let $\mathbf{f}$ be a classifier and $\mathbf{x}$ an input signal 
+(e.g., an image, an audio, or a volume). The classifier maps the input to a class $c$ via
+$$
+\mathbf{y}_c = \arg\max_{c \in \mathcal{C}} \mathbf{f}(\mathbf{x}) \equiv \mathbf{f}_c(\mathbf{x}),
+$$
+with a slight abuse of notation. The original <em>saliency map</em> for class $c$ is defined as:
+$$
+\gamma_{\text{Sa}}(\mathbf{x}) = \left| \nabla_{\mathbf{x}} \mathbf{f}_c(\mathbf{x}) \right|,
+$$
+where $\mathbf{f}_c$ is assumed to be piecewise differentiable 
+(Simonyan et al., 2014). This map highlights the components 
+of the input $\mathbf{x}$ that most influence the classifier's decision, 
+based on the gradient's magnitude.
+</p>
+
+<p>
+Let $\mathbf{z} = \mathcal{W}(\mathbf{x})$ denote the discrete wavelet transform (DWT) 
+of $\mathbf{x}$. Since $\mathcal{W}$ is invertible, we can define the saliency map in the wavelet domain as:
+</p>
+
+<p style="text-align: center;">
+$$
+\gamma_{\text{Sa}}(\mathbf{z}) =
+\left| \frac{\partial \mathbf{f}_c(\mathbf{x})}{\partial \mathbf{z}} \right|
+= \left| \frac{\partial \mathbf{f}_c(\mathbf{x})}{\partial \mathbf{x}} \cdot \frac{\partial \mathcal{W}^{-1}(\mathbf{z})}{\partial \mathbf{z}} \right|,
+\tag{1}
+$$
+</p>
+
+<p>
+using the relation $\mathbf{x} = \mathcal{W}^{-1}(\mathbf{z})$ and the chain 
+rule. The first term is the gradient of the classifier with respect to the input, 
+and the second is the Jacobian of the inverse wavelet transform. 
+This wavelet-domain saliency map tells us which coefficients — 
+localized in both space and frequency — are most relevant for the prediction.
+</p>
+
+<h3 class="title is-4">Smoothing</h3>
+
+<p>
+Since $\mathbf{f}_c$ is not necessarily continuously differentiable, 
+the raw gradients can vary abruptly, especially at fine scales. 
+To address this, we apply a smoothing strategy inspired by 
+SmoothGrad (Smilkov et al., 2017), which averages gradients over noisy inputs:
+</p>
+
+<p style="text-align: center;">
+$$
+\gamma_{\text{SG}}(\mathbf{z}) = \frac{1}{n} \sum_{i=1}^{n} \nabla_{\tilde{\mathbf{z}}} \mathbf{f}\left( \mathcal{W}^{-1}(\tilde{\mathbf{z}}) \right),
+\tag{2}
+$$
+</p>
+
+<p>
+where $\tilde{\mathbf{z}} = \mathcal{W}(\mathbf{x} + \boldsymbol{\delta})$ and 
+$\boldsymbol{\delta} \sim \mathcal{N}(0, \sigma^2 I)$. The number of samples $n$ and 
+noise level $\sigma^2$ are tunable hyperparameters. This produces more stable and 
+interpretable saliency maps in the wavelet domain. 
+</p>
+
+<h3 class="title is-4">Path Integration</h3>
+
+<p>
+An alternative to smoothing is to average gradients along a 
+continuous path from a baseline input $\mathbf{x}_0$ (typically set to zero) 
+to the actual input. This method, known as <em>Integrated Gradients</em> (
+  Sundararajan et al., 2017), satisfies desirable theoretical properties 
+  like sensitivity and implementation invariance.
+</p>
+
+<p>
+Adapting this method to the wavelet domain, 
+let $\mathbf{z} = \mathcal{W}(\mathbf{x})$ and $\mathbf{z}_0 = \mathcal{W}(\mathbf{x}_0)$, then we define:
+</p>
+
+<p style="text-align: center;">
+$$
+\gamma_{\text{IG}}(\mathbf{z}) = (\mathbf{z} - \mathbf{z}_0) \cdot \int_0^1 
+\frac{\partial \mathbf{f}_c\left( \mathcal{W}^{-1}(\mathbf{z}_0 + \alpha(\mathbf{z} - \mathbf{z}_0)) \right)}{\partial \mathbf{z}} \, d\alpha.
+\tag{3}
+$$
+</p>
+
+<p>
+This formulation attributes importance to each wavelet coefficient 
+by integrating its effect along a straight-line path in the wavelet domain.
+</p>
+
+
 </div>
     
 
@@ -232,13 +345,19 @@ Some more text here
       </div>
     </div>
     <div class="columns is-centered has-text-centered">
-      Illustration of the wavelet decomposition. 
+      
+      <b>Feature attribution in the wavelet domain.</b> First one computes the wavelet transform 
+      of the input signal and requires the gradients with respect to these wavelet coefficients.
+      The wavelet transform is then inversed to obtain the original input, which is passed to the model.
+      Then, the gradients are computed with respect to the model output. Two averaging methods are 
+      proposed in this work: smoothing and path integration. Smoothing emphasizes on the importance 
+      of each coefficient within each scale, while path integration highlights the interscale
+      dependencies and thus shows that the approximation coefficients are relatively more important
+      than the detail coefficients.
       </div>
   
   <div class="content has-text-justified">
-<p>
-Some more text here
-</p>
+
 </div>
 </div>  
 </div>
