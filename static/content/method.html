@@ -135,15 +135,55 @@
       determines what kind of structural components will be highlighted 
       on the image. Its choice is therefore grounded in the application at hand.
     </p>
+
+    <p>
+    A <em>wavelet</em> is a function $\psi \in \mathcal{H} = L^2(\mathbb{R}^n)$ that is normalized,
+    centered at the origin, and has zero mean, i.e.,
+    $\int_{\mathbb{R}^n} \psi(x) \, dx = 0$. This function $\psi$ is called the
+    <em>mother wavelet</em>, and it serves as the building block for constructing
+    a family of wavelets via scaling and translation.
+  </p>
+
+  <p style="text-align: center;">
+    $$\psi_{\lambda,b}(x) = \frac{1}{\lambda^{n/2}} \, \psi\left(\frac{x - b}{\lambda} \right) \tag{1}$$
+  </p>
+
   <p>
-  A wavelet is a function $\psi \in \mathcal{H} = L^2(\mathbb{R}^n)$ that is normalized, centered at the origin, and has zero mean, i.e., $\int_{\mathbb{R}^n} \psi(x) \, dx = 0$.
-</p>
-    <p style="text-align: center;">
-  $$\mathcal{D} = \left\{ \psi_{\lambda,b}(x) = \frac{1}{\lambda^{n/2}} \, \psi\left(\frac{x - b}{\lambda} \right) \right\}_{b \in \mathbb{R}^n, \, \lambda > 0} \tag{1}$$
+    To analyze signals using wavelets, we often discretize the scale and translation
+    parameters. A common and efficient choice is to use <em>dyadic scales</em>
+    $\lambda = 2^j$ and translations on a dyadic grid $b = 2^j k$,
+    where $j, k \in \mathbb{Z}$. This leads to the <strong>Discrete Wavelet Transform</strong> (DWT),
+    based on the countable family:
   </p>
-      The Wavelet Attribution Method (WAM) is a novel approach to feature attribution that leverages the wavelet transform to provide a unified perspective on model interpretability across various modalities, including images, audio, and 3D volumes. 
-      By decomposing the model's decision-making process in the wavelet domain, WAM offers deeper insights into the model's behavior, revealing not only where it focuses but also how it interprets structural information in the input data.
+
+  <p style="text-align: center;">
+    $$\left\{ \psi_{j,k}(x) = 2^{j n/2}\,
+    \psi\!\left(2^{j} x - k \right) \right\}_{j,k \in \mathbb{Z}} \tag{2}$$
   </p>
+
+  <p>
+    The DWT represents a signal $g \in L^2(\mathbb{R}^n)$ by projecting it onto this family.
+    The wavelet coefficients are obtained as inner products:
+  </p>
+
+  <p style="text-align: center;">
+    $$\mathcal{W}_{\mathrm{DWT}}(g)(j,k)
+    = \langle g, \psi_{j,k} \rangle
+    = \int_{\mathbb{R}^{n}} g(x)\,\overline{\psi_{j,k}(x)} \, dx \tag{3}$$
+  </p>
+
+  <p>
+    These coefficients measure the content of $g$ at scale $2^{-j}$ and location $2^{-j}k$.
+    When $\psi$ satisfies certain admissibility and regularity conditions, the DWT
+    becomes an invertible transform, and the signal can be exactly reconstructed:
+  </p>
+
+  <p style="text-align: center;">
+    $$g(x) = \sum_{j \in \mathbb{Z}} \sum_{k \in \mathbb{Z}}
+    \mathcal{W}_{\mathrm{DWT}}(g)(j,k)\,\psi_{j,k}(x) \tag{4}$$
+  </p>
+
+
 </div>
     
 
