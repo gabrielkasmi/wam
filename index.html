@@ -238,6 +238,23 @@
   <div class="container is-max-desktop content">
     <h2 class="title is-3">Motivation and proposed approach</h2>
 
+<section class="section"></section>
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <img src="static/images/WAM_overview.png" alt="Method Overview"/>
+        <br><br>
+      </div>
+    </div>
+    <div class="columns is-centered has-text-centered">
+      WAM explains any input modality by decomposing the model’s decision in the wavelet domain. 
+      It computes the gradient of the model’s prediction with respect to the wavelet coefficients 
+      of the input modality (audio, images, volumes). 
+      Unlike pixels, wavelet coefficients preserve structural information about the input signal, 
+      offering deeper insights into the model’s behavior and going beyond where it focuses.
+      </div>
+    </div>
+  
+  <div class="content has-text-justified">
 <p>
 Explainable AI (XAI) methods, particularly feature attribution methods,
 are crucial for understanding the decision-making processes of deep neural networks.
@@ -262,39 +279,10 @@ diverse modalities (or signals), as wavelets are inherently
 low-level features defined across various signal dimensions. 
 Click <a href="static/content/method.html">here</a> to learn more about the method.
 </p>
-<section class="section"></section>
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <img src="static/images/WAM_overview.png" alt="Method Overview"/>
-        <br><br>
-      </div>
-    </div>
-    <div class="columns is-centered has-text-centered">
-      WAM explains any input modality by decomposing the model’s decision in the wavelet domain. 
-      It computes the gradient of the model’s prediction with respect to the wavelet coefficients 
-      of the input modality (audio, images, volumes). 
-      Unlike pixels, wavelet coefficients preserve structural information about the input signal, 
-      offering deeper insights into the model’s behavior and going beyond where it focuses.
-      </div>
-    </div>
+</div>
+  
   </div>
 </section>
-
-<!-- Teaser image -->
-<!--
-<section class="hero teaser">
-  <div class="container is-max-desktop">
-    <div class="hero-body is-centered has-text-centered">
-      <img style="width: 70%;" src="static/images/WAM_overview.png" alt="WAMOverview"/>
-      <h2 style="font-size: 1em" class="subtitle has-text-centered ">
-        WAM explains any input modality by decomposing the model’s decision in the wavelet domain. It computes the gradient
-        of the model’s prediction with respect to the wavelet coefficients of the input modality (audio, images, volumes). Unlike pixels, wavelet
-        coefficients preserve structural information about the input signal, offering deeper insights into the model’s behavior and going beyond
-        where it focuses.
-      </h2>
-    </div>
-  </div>
--->
 
 
 <!-- Image carousel -->
@@ -302,17 +290,6 @@ Click <a href="static/content/method.html">here</a> to learn more about the meth
   <div class="hero-body">
     <div class="container is-max-desktop">
       <h2 class="title is-3">Explanation of different modalities</h2>
-
-      <p class="subtitle has-text-justified">
-        WAM provides explanations for various input modalities, including images, audio, and volumes. 
-        The following carousel illustrates how WAM decomposes the model's decision into wavelet 
-        coefficients at multiple scales, 
-        revealing both the <b>where</b> and <b>what</b> of the model's focus. Click 
-        <a href="static/content/results.html">here</a> to get more details on the quantitative 
-        evaluation of WAM on these modalities and <a href="static/content/supplementary.html">here</a> to 
-        see more examples
-      </p>
-
 
       <div id="results-carousel" class="carousel results-carousel">
        <div class="item">
@@ -341,10 +318,23 @@ Click <a href="static/content/method.html">here</a> to learn more about the meth
      </div>
   </div>
 
+  <div class="content has-text-justified">
+
+      <p>
+        WAM provides explanations for various input modalities, including images, audio, and volumes. 
+        The following carousel illustrates how WAM decomposes the model's decision into wavelet 
+        coefficients at multiple scales, 
+        revealing both the <b>where</b> and <b>what</b> of the model's focus. Click 
+        <a href="static/content/results.html">here</a> to get more details on the quantitative 
+        evaluation of WAM on these modalities and <a href="static/content/supplementary.html">here</a> to 
+        see more examples
+      </p>
 <p>
   WAM bridges the gap between feature attribution and broader aspects of model robustness and transparency. Click 
   <a href="static/content/application.html">here</a> visualize application examples of WAM across different modalities.
+  
 </p>
+</div>
 </div>
 </div>
 </section>
@@ -411,19 +401,19 @@ Click <a href="static/content/method.html">here</a> to learn more about the meth
 
 
 <!-- Paper poster -->
-<!--
+
 <section class="hero is-small is-light">
   <div class="hero-body">
     <div class="container">
       <h2 class="title">Poster</h2>
 
-      <iframe  src="static/pdfs/sample.pdf" width="100%" height="550">
+      <iframe  src="static/pdfs/poster_WAM_ICML_25.pdf" width="100%" height="550">
           </iframe>
         
       </div>
     </div>
   </section>
--->
+
 <!--End paper poster -->
 
 
