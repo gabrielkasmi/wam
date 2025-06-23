@@ -199,9 +199,11 @@
       </div>
     </div>
     <div class="columns is-centered has-text-centered">
+      <p>
       <b>Computation of the dyadic wavelet transform. </b> A mother wavelet $\psi$ convoluted
       with the original image at different orientations to obtain the horizontal, vertical, and diagonal components at 
       a given scale. The process is repeated for each scale, resulting in a multiscale decomposition of the image.
+      </p>
       </div>
   
   <div class="content has-text-justified">
@@ -270,7 +272,7 @@ $$
 \gamma_{\text{Sa}}(\mathbf{z}) =
 \left| \frac{\partial \mathbf{f}_c(\mathbf{x})}{\partial \mathbf{z}} \right|
 = \left| \frac{\partial \mathbf{f}_c(\mathbf{x})}{\partial \mathbf{x}} \cdot \frac{\partial \mathcal{W}^{-1}(\mathbf{z})}{\partial \mathbf{z}} \right|,
-\tag{1}
+\tag{5}
 $$
 </p>
 
@@ -294,7 +296,7 @@ SmoothGrad (Smilkov et al., 2017), which averages gradients over noisy inputs:
 <p style="text-align: center;">
 $$
 \gamma_{\text{SG}}(\mathbf{z}) = \frac{1}{n} \sum_{i=1}^{n} \nabla_{\tilde{\mathbf{z}}} \mathbf{f}\left( \mathcal{W}^{-1}(\tilde{\mathbf{z}}) \right),
-\tag{2}
+\tag{6}
 $$
 </p>
 
@@ -324,7 +326,7 @@ let $\mathbf{z} = \mathcal{W}(\mathbf{x})$ and $\mathbf{z}_0 = \mathcal{W}(\math
 $$
 \gamma_{\text{IG}}(\mathbf{z}) = (\mathbf{z} - \mathbf{z}_0) \cdot \int_0^1 
 \frac{\partial \mathbf{f}_c\left( \mathcal{W}^{-1}(\mathbf{z}_0 + \alpha(\mathbf{z} - \mathbf{z}_0)) \right)}{\partial \mathbf{z}} \, d\alpha.
-\tag{3}
+\tag{7}
 $$
 </p>
 
@@ -340,12 +342,12 @@ by integrating its effect along a straight-line path in the wavelet domain.
 <section class="section"></section>
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <img src="../../static/animations/gif-wavelet-transform.gif" alt="Method Overview"/>
+        <img src="../../static/animations/gif-method.gif" alt="Method Overview"/>
         <br><br>
       </div>
     </div>
     <div class="columns is-centered has-text-centered">
-      
+      <p>
       <b>Feature attribution in the wavelet domain.</b> First one computes the wavelet transform 
       of the input signal and requires the gradients with respect to these wavelet coefficients.
       The wavelet transform is then inversed to obtain the original input, which is passed to the model.
@@ -354,6 +356,7 @@ by integrating its effect along a straight-line path in the wavelet domain.
       of each coefficient within each scale, while path integration highlights the interscale
       dependencies and thus shows that the approximation coefficients are relatively more important
       than the detail coefficients.
+      </p>
       </div>
   
   <div class="content has-text-justified">
