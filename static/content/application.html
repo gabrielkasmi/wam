@@ -81,6 +81,15 @@
 }
 </style>
 
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']]
+    }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" defer></script>
 
 </head>
 <body>
@@ -121,13 +130,48 @@
     <h2 class="title is-3">Bridging the gap with model robustness</h2>
 
 <div class="content has-text-justified">
-  <p>
-      Some text 
-    </p>
-  <p>
-      The Wavelet Attribution Method (WAM) is a novel approach to feature attribution that leverages the wavelet transform to provide a unified perspective on model interpretability across various modalities, including images, audio, and 3D volumes. 
-      By decomposing the model's decision-making process in the wavelet domain, WAM offers deeper insights into the model's behavior, revealing not only where it focuses but also how it interprets structural information in the input data.
-  </p>
+
+
+<p>
+In computer vision, several studies have observed a link between model 
+robustness and a reliance on low-frequency image components (Zhang et al., 2022; Chen et al., 2022; 
+Wang et al., 2020). This behavior has been demonstrated by filtering input images in 
+the Fourier domain. However, since the Fourier transform discards spatial localization, 
+these perturbations affect the entire image uniformly.
+</p>
+
+<p>
+The Wavelet Attribution Method (<strong>WAM</strong>) offers a more structured alternative. 
+In the wavelet domain, each scale corresponds to a dyadic frequency band with preserved spatial 
+information. By summing the importance of wavelet coefficients at a given scale, WAM 
+quantifies the model's reliance on specific frequency ranges. This provides a 
+direct and interpretable estimation of spectral sensitivity—without requiring 
+multiple perturbation passes or handcrafted filters.
+</p>
+
+<p>
+To illustrate this property, we compare several ResNet models 
+trained with different objectives: a standard ResNet (ERM) and three 
+adversarially trained variants—ADV (Madry et al., 2018), ADV-Fast (Wong et al., 2020), and 
+ADV-Free (Shafahi et al., 2019). For each model, we compute 1,000 explanations using 
+WAM on ImageNet samples.
+</p>
+
+<p>
+The figure below shows the average importance assigned to each wavelet scale. 
+We normalize the explanations per image to highlight the relative use of fine versus 
+coarse features. As expected, the vanilla ResNet relies more heavily on fine scales 
+(high frequencies), whereas adversarially trained models shift attention 
+toward coarser scales (lower frequencies). 
+</p>
+<p>
+This result confirms that WAM 
+recovers known insights from the robustness literature and can be 
+used to assess model sensitivity more efficiently. Indeed, WAM only requires a 
+forward pass and therefore assessments a model's or a prediction robustness
+can be made on-the-fly.
+</p>
+
 </div>
     
 
@@ -139,13 +183,16 @@
       </div>
     </div>
     <div class="columns is-centered has-text-centered">
-      Meaningful perturbations in the wavelet domain.
+      <p>
+        <b>Model robustness assessment with WAM.</b> Each bar shows the relative 
+        importance of each wavelet scale in the model’s prediction. 
+        Explanations are averaged over 1,000 ImageNet images and normalized 
+        per sample. Adversarially trained models shift attention toward coarser 
+        (low-frequency) features, confirming robustness patterns documented in prior work.
+      </p>
       </div>
   
   <div class="content has-text-justified">
-<p>
-Some more text here
-</p>
 </div>
 </div>  
 </div>
@@ -155,34 +202,90 @@ Some more text here
 <!-- Images : meaningful perturbations -->
 <section class="section">
   <div class="container is-max-desktop content">
-    <h2 class="title is-3">Revisiting meaningful perturbations</h2>
+    <h2 class="title is-3">Meaningful perturbations in the Wavelet domain</h2>
 
 <div class="content has-text-justified">
-  <p>
-      Some text 
-    </p>
-  <p>
-      The Wavelet Attribution Method (WAM) is a novel approach to feature attribution that leverages the wavelet transform to provide a unified perspective on model interpretability across various modalities, including images, audio, and 3D volumes. 
-      By decomposing the model's decision-making process in the wavelet domain, WAM offers deeper insights into the model's behavior, revealing not only where it focuses but also how it interprets structural information in the input data.
-  </p>
-</div>
-    
 
+<p>
+Meaningful perturbations (Fong and Vedaldi, 2017; Fong et al., 2019) identify relevant 
+input regions by learning a mask that hides as little as possible while significantly 
+altering a model's output. Traditionally, this is achieved in pixel space via smooth, 
+sparse masks that degrade prediction confidence. We revisit this approach in 
+the <strong>wavelet domain</strong>, which better captures the signal’s spatial and 
+frequency structure, leading to more interpretable perturbations.
+</p>
+
+<p>
+We define an optimization objective over a wavelet-domain 
+mask \( \mathbf{m} \in [0,1]^{|\mathcal{X}|} \) that selects which coefficients to keep:
+</p>
+
+<p style="text-align: center;">
+  \[
+  \mathbf{m}^\star = \arg\min_{\mathbf{m} \in [0,1]^{|\mathcal{X}|}} f_c\left(\mathcal{W}^{-1}(\mathbf{z} 
+  \odot \mathbf{m})\right) + \alpha \|\mathbf{m}\|_1
+  \]
+</p>
+
+<p>
+Here, \( f_c \) is the model’s logit score for class \( c \), \( \mathbf{z} = \mathcal{W}(\mathbf{x}) \) is 
+the wavelet transform of the input, \( \odot \) denotes element-wise multiplication, and \( \alpha \) controls 
+the sparsity. The optimization begins with \( \mathbf{m}_0 = \mathbf{1} \), retaining all coefficients, 
+and proceeds via gradient descent:
+</p>
+
+<p style="text-align: center;">
+  \[
+  \mathbf{m}_{i+1} = \mathbf{m}_i - \eta \nabla_{\mathbf{m}_i} \left( f_c\left(\mathcal{W}^{-1}(\mathbf{z} 
+  \odot \mathbf{m}_i)\right) + \alpha \|\mathbf{m}_i\|_1 \right)
+  \]
+</p>
+
+<p>
+We use the Nadam optimizer (Dozat, 2016) for faster convergence. 
+This process yields <em>minimal images</em> that preserve model confidence 
+using only a sparse subset of wavelet coefficients—up to 90% sparsity in 
+practice—indicating that decisions often rely on a compact, structured representation.
+</p>
+
+
+<p>
+Unlike traditional methods that answer only <em>where</em> important regions 
+lie, the wavelet-based approach reveals both <em>where</em> and <em>what</em>: spatial 
+location and frequency-scale relevance. This richer structure provides deeper 
+interpretability into how models make decisions.
+</p>
+
+<p>
+Our results qualitatively align with those of Kolek et al. (2023), and recover 
+the texture bias highlighted in ResNet classifiers trained on ImageNet 
+(Geirhos et al., 2018). As shown in the figure below, the model’s 
+reliance on textural patterns becomes visible through sparse wavelet-domain masks.
+</p>
+</div>
 <section class="section"></section>
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <img src="../../static/animations/gif-wavelet-transform.gif" alt="Method Overview"/>
+        <img src="../../static/images/optimization_figure_2_compressed.png" alt="Meaningful perturbations"/>
         <br><br>
       </div>
     </div>
     <div class="columns is-centered has-text-centered">
-      Meaningful perturbations in the wavelet domain.
+      <p>
+        <b>A) Sparsity-optimized minimal images.</b> We revisit meaningful perturbation 
+        by optimizing the sparsity of the wavelet transform using masking, instead 
+        of optimizing the mask in pixel space. The displayed examples show that 
+        the resulting minimal images reveal the model's reliance on textures. 
+        <b>B) Sparsity Pareto front.</b>
+        As $\alpha$ increases, the sparsity of the wavelet coefficients increases 
+        (x-axis), but beyond a certain point, too much information is lost and the 
+        logit score drops to zero. However, we observe that many components 
+        can be removed before adversely affecting the model. Results 
+        are averaged across 1,000 images optimized for 500 steps and 
+        for $\alpha$ ranging in $[0,100]$ for each image.
+      </p>
       </div>
-  
   <div class="content has-text-justified">
-<p>
-Some more text here
-</p>
 </div>
 </div>  
 </div>
@@ -192,35 +295,52 @@ Some more text here
 <!-- Audio : overlap experiment animation -->
 <section class="section">
   <div class="container is-max-desktop content">
-    <h2 class="title is-3">Overlap experiment</h2>
+    <h2 class="title is-3">Audio: the Overlap experiment</h2>
 
 <div class="content has-text-justified">
-  <p>
-      Some text 
-    </p>
-  <p>
-      The Wavelet Attribution Method (WAM) is a novel approach to feature attribution that leverages the wavelet transform to provide a unified perspective on model interpretability across various modalities, including images, audio, and 3D volumes. 
-      By decomposing the model's decision-making process in the wavelet domain, WAM offers deeper insights into the model's behavior, revealing not only where it focuses but also how it interprets structural information in the input data.
-  </p>
+
+
+<p>
+The Wavelet Attribution Method (WAM) can effectively filter relevant components in corrupted or 
+mixed audio signals. Remarkably, it highlights the essential parts of the target signal. without 
+requiring any additional training. The Results section of the paper discusses the Noise experiment. 
+A variant for assessing the ability of an explanation method to recover relevant 
+parts from an input audio is the Overlap experiment.
+</p>
+
+<p>
+In this example, we conduct an overlap experiment by mixing a target 
+audio with a corrupting audio to form the input. Although the corruption is 
+present, the model's prediction remains unchanged. This suggests that the model 
+continues to rely on the target audio for its decision.
+</p>
+
+<p>
+The interpretation audio shown in the Figure below, which is reconstructed using the top-ranked 
+wavelet coefficients, confirms this hypothesis. The visualization reveals that WAM nearly 
+eliminates the influence of the corruption and isolates the regions of the target audio 
+that are most influential in the model’s prediction—again, without 
+the need for fine-tuning or retraining.
+</p>
 </div>
     
-
 <section class="section"></section>
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <img src="../../static/animations/gif-wavelet-transform.gif" alt="Method Overview"/>
+        <img src="../../static/animations/overlap-animated.gif" alt="Overlap experiment"/>
         <br><br>
       </div>
     </div>
     <div class="columns is-centered has-text-centered">
-      Meaningful perturbations in the wavelet domain.
+      <p>
+        <b>Qualitative illustration of WAM for audio via an Overlap experiment.</b>
+        The audio of the target class (``Crow'') is mixed with a corrupting audio 
+        (``Chirping birds'') to form the input to the classifier. Interpretation audio 
+        reconstructed with important wavelet coefficients virtually eliminates signal 
+        from the corrupting audio, and also clearly emphasizes parts of the target 
+        class audio (indicated with green boxes).
+      </p>
       </div>
-  
-  <div class="content has-text-justified">
-<p>
-Some more text here
-</p>
-</div>
 </div>  
 </div>
 </section>
@@ -229,35 +349,45 @@ Some more text here
 <!-- Shapes : Scale disentanglement on voxels -->
 <section class="section">
   <div class="container is-max-desktop content">
-    <h2 class="title is-3">Overlap experiment</h2>
+    <h2 class="title is-3">Disentangling scales on voxels</h2>
 
 <div class="content has-text-justified">
-  <p>
-      Some text 
-    </p>
-  <p>
-      The Wavelet Attribution Method (WAM) is a novel approach to feature attribution that leverages the wavelet transform to provide a unified perspective on model interpretability across various modalities, including images, audio, and 3D volumes. 
-      By decomposing the model's decision-making process in the wavelet domain, WAM offers deeper insights into the model's behavior, revealing not only where it focuses but also how it interprets structural information in the input data.
-  </p>
+<p>
+We retrieve on voxels the same multi-scale decomposition as observed for 
+images and audio. The figure below highlights how larger scales capture edges 
+and structural contours, while smaller scales concentrate importance at the center of the digit.
+</p>
+<p>
+This decomposition is particularly valuable for volumetric data, enabling the separation 
+of fine-grained details from broader structural patterns. In medical imaging, 
+for example, coarse-scale features may correspond to organ boundaries or lesion contours, 
+while finer scales capture subtle textures indicative of disease. In 3D object recognition, 
+large scales reveal overall shapes, whereas fine scales distinguish between closely related objects.
+</p>
+<p>
+To our knowledge, WAM is the first method to provide such a decomposition for 3D shapes, 
+offering a new perspective on how models process hierarchical spatial information in volumetric data.
+</p>
+
 </div>
     
 
 <section class="section"></section>
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <img src="../../static/animations/gif-wavelet-transform.gif" alt="Method Overview"/>
+        <img src="../../static/images/7-line.png" alt="3D shapes"/>
         <br><br>
       </div>
     </div>
     <div class="columns is-centered has-text-centered">
-      Meaningful perturbations in the wavelet domain.
+      <p>
+        <b>
+          Multi-scale decomposition of feature importance on a volume using WAM.
+        </b> Coarse scales (yellow) highlight the edges of the number, 
+        capturing its global structure. Fine scales (blue) focus on the 
+        digit's center, capturing high-frequency details and localized variations.
+      </p>>
       </div>
-  
-  <div class="content has-text-justified">
-<p>
-Some more text here
-</p>
-</div>
 </div>  
 </div>
 </section>
@@ -268,17 +398,29 @@ Some more text here
     <h2 class="title is-3">What's next ?</h2>
 
 <div class="content has-text-justified">
-  <p>
-      Feature attribution domain: discussion on the desirable properties 
-    </p>
-  <p>
-      Interested, feel free to reach out to us !
-  </p>
-</div>
-    
+<p>
+WAM demonstrates strong versatility across modalities by shifting attribution 
+from pixel space to the wavelet domain, enabling interpretable insights into model 
+behavior. The Appendix details its theoretical properties and shows that \( \text{WAM}_{IG} \) 
+satisfies key axioms such as completeness, implementation invariance, and sensitivity.
+</p>
+<p>
+More generally, we consider feature attribution in transformed domains via invertible 
+mappings \( \mathcal{T}: \mathbb{R}^d \to \mathbb{R}^d \). For a 
+classifier \( f_c \), we define \( \tilde{f} = f_c \circ \mathcal{T}^{-1} \) and compute 
+attributions \( \gamma(\mathbf{z}) \) with \( \mathbf{z} = \mathcal{T}(\mathbf{x}) \). 
+When \( \mathcal{T} \) is linear (e.g., wavelets, Fourier), standard attribution 
+guarantees (completeness, linearity, implementation invariance) extend naturally.
+</p>
+<p>
+This opens new directions: which transforms yield the most interpretable or 
+robust attributions? Can transformed attributions generalize across data 
+types? Are there optimal domains tailored to model architectures or tasks? 
+We invite future work to explore attribution in structured, invertible spaces.
+</p>
+
+</div>    
 </div> 
 </section>
-
-
   </body>
   </html>
