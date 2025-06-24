@@ -145,16 +145,33 @@
 <!-- Teaser image -->
 <section class="section">
   <div class="container is-max-desktop content">
-    <h2 class="title is-3">Quantitative results</h2>
 
 <div class="content has-text-justified">
-  <p>
-      The table below summarizes the quantitative results. 
-    </p>
-  <p>
-    Provide here some details on the evaluation setting.   
-    See the supplementary material for additional results.
-  </p>
+  
+<p>
+  We introduce a comprehensive evaluation of WAM across three modalities: audio, images, and volumes. 
+  WAM is benchmarked against standard gradient-based attribution techniques using 
+  Faithfulness, defined as the difference between Insertion and Deletion metrics. 
+  The evaluation spans ESC-50, ImageNet, and MedMNIST3D datasets, 
+  using a consistent set of models and attribution methods including Saliency, 
+  SmoothGrad, Integrated Gradients, and GradCAM.
+</p>
+
+<p>
+  WAM, particularly its path-integrated variant WAM-IG, consistently outperforms 
+  traditional attribution methods—especially for images and volumes—while remaining competitive for audio. 
+  The performance gain is attributed to path integration, which captures 
+  inter-scale dependencies and reveals the relative importance of each 
+  scale in the model's prediction. 
+  These results highlight the advantage of using wavelets over pixels 
+  as the basis for feature attribution.
+</p>
+
+<p>
+  For more details on the evaluation setup, datasets, models, and additional 
+  results, we refer the reader to the main paper and its appendix.
+</p>
+
 </div>
     
 
