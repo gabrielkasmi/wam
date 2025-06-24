@@ -2,39 +2,28 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
-  <!-- Replace the content tag with appropriate information -->
   <meta name="description" content="WAM is a unifying perspective on feature attribution.">
   <meta property="og:title" content="WAM | Supplementary"/>
   <meta property="og:description" content="Project page of the Wavelet Attribution Method (ICML 2025)"/>
   <meta property="og:url" content="URL OF THE WEBSITE"/>
-  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
-  <meta property="og:image" content="../../static/images/wavelet_banner_1200x630.png" />
+  <meta property="og:image" content="../../static/images/wavelet_banner_1200x630.webp" />
   <meta property="og:image:width" content="1200"/>
   <meta property="og:image:height" content="630"/>
-
-
   <meta name="twitter:title" content="Wavelet attribution method">
   <meta name="twitter:description" content="Project page for the Wavelet Attribution Method (ICML 2025)">
-  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
-  <meta name="twitter:image" content="../../static/images/your_twitter_banner_image.png">
+  <meta name="twitter:image" content="../../static/images/your_twitter_banner_image.webp">
   <meta name="twitter:card" content="summary_large_image">
-  <!-- Keywords for your paper to be indexed by-->
   <meta name="keywords" content="Interpretability, Feature attribution, Wavelet, Images, Audio, 3D, Volumes">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-
   <title>Wavelet Attribution Method</title>
-  <link rel="icon" type="image/x-icon" href="../../static/images/favicon-32x32.png">
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
-  rel="stylesheet">
-
+  <link rel="icon" type="image/x-icon" href="../../static/images/favicon-32x32.webp">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
   <link rel="stylesheet" href="../../static/css/bulma.min.css">
   <link rel="stylesheet" href="../../static/css/bulma-carousel.min.css">
   <link rel="stylesheet" href="../../static/css/bulma-slider.min.css">
   <link rel="stylesheet" href="../../static/css/fontawesome.all.min.css">
-  <link rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="../../static/css/index.css">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -45,61 +34,44 @@
   <script src="../../static/js/index.js"></script>
 
   <style>
-.hero {
-  position: relative;
-  color: white !important;
-}
-
-/* Dark overlay on the background image */
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-color: rgba(0, 0, 0, 0.6); /* Black with 60% opacity */
-  z-index: 0;
-}
-
-/* Ensure text appears above the overlay */
-.hero .hero-body {
-  position: relative;
-  z-index: 1;
-}
-
-/* Titles and subtitles */
-.hero .title {
-  color: white !important;
-}
-
-/* Authors and links */
-.hero a {
-  color: white !important;
-  text-decoration: underline; /* keeps link style */
-}
-
-.hero a:hover {
-  color: #ddd !important;
-}
-</style>
-
-
+    .hero {
+      position: relative;
+      color: white !important;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-color: rgba(0, 0, 0, 0.6);
+      z-index: 0;
+    }
+    .hero .hero-body {
+      position: relative;
+      z-index: 1;
+    }
+    .hero .title {
+      color: white !important;
+    }
+    .hero a {
+      color: white !important;
+      text-decoration: underline;
+    }
+    .hero a:hover {
+      color: #ddd !important;
+    }
+  </style>
 </head>
 <body>
-
-  <section class="hero is-medium" style="background-image: url('../../static/images/wavelet_banner_1200x630.png'); background-size: cover; background-position: center; background-repeat: no-repeat;">
-  <div class="hero-body">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered">
-        <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">Additional visualizations</h1>
+  <section class="hero is-medium" style="background-image: url('../../static/images/wavelet_banner_1200x630.webp'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
           <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">Additional visualizations</h1>
             <div class="publication-links">
-              <!-- Back to Homepage link -->
               <span class="link-block">
-                <a href="../../index.html" 
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                    <i class="fas fa-home"></i>
-                  </span>
+                <a href="../../index.html" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fas fa-home"></i></span>
                   <span>Back to Homepage</span>
                 </a>
               </span>
@@ -108,46 +80,103 @@
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
+  <!-- Minimal images section -->
+  <section class="section">
+    <div class="container is-max-desktop content">
+      <h2 class="title is-3">Minimal images</h2>
+      <div class="content has-text-justified">
+        <p>The figure below displays examples of minimal images obtained after meaningfully perturbing the input image in the wavelet domain.</p>
+      </div>
+      <div id="carousel-minimal-images" class="carousel results-carousel">
+        <div class="item"><img src="../../static/images/supplementary/meaningful_1.webp" alt="meaningful_1" loading="lazy"/></div>
+        <div class="item"><img src="../../static/images/supplementary/meaningful_2.webp" alt="meaningful_2" loading="lazy"/></div>
+        <div class="item"><img src="../../static/images/supplementary/meaningful_3.webp" alt="meaningful_3" loading="lazy"/></div>
+      </div>
+    </div>
+  </section>
 
-<!-- Teaser image -->
+  <!-- WAM Visualizations section -->
+  <section class="section">
+    <div class="container is-max-desktop content">
+      <h2 class="title is-3">WAM visualizations</h2>
+      <div class="content has-text-justified">
+        <p>The figure below displays additional visualizations of WAM. From left to right: original image, WAM in the wavelet domain, heatmap in the pixel domain, filtered image illustrating the image regions that need to be well defined for the model to predict the image label correctly.</p>
+      </div>
+      <div id="carousel-wam-visualizations" class="carousel results-carousel">
+        <div class="item"><img src="../../static/images/supplementary/examples_1.webp" alt="example_1" loading="lazy"/></div>
+        <div class="item"><img src="../../static/images/supplementary/examples_2.webp" alt="example_2" loading="lazy"/></div>
+        <div class="item"><img src="../../static/images/supplementary/examples_3.webp" alt="example_3" loading="lazy"/></div>
+        <div class="item"><img src="../../static/images/supplementary/examples_4.webp" alt="example_4" loading="lazy"/></div>
+        <div class="item"><img src="../../static/images/supplementary/examples_5.webp" alt="example_5" loading="lazy"/></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Audio explanations section -->
+  <section class="section">
+    <div class="container is-max-desktop content">
+      <h2 class="title is-3">Explanations on audio spectrograms</h2>
+      <div class="content has-text-justified">
+        <p>We refer the reader to <a href="https://speechprocessingbook.aalto.fi/Representations/Spectrogram_and_the_STFT.html">this page</a> for a tutorial on audio spectrograms.</p>
+      </div>
+      <div id="carousel-audio-explanations" class="carousel results-carousel">
+        <div class="item">
+          <img src="../../static/images/supplementary/noise_audio.webp" alt="Noise audio" loading="lazy"/>
+          <h2 class="subtitle has-text-centered" style="font-size: medium;">
+            <b>Noise Experiment.</b> We add 0~dB white noise on the audio of the target class ('Crow') to form the input to the classifier. Relevant parts are highlighted with the green box.
+          </h2>
+        </div>
+        <div class="item">
+          <img src="../../static/images/supplementary/overlap_3.webp" alt="Overlap Dog-Rooster" loading="lazy"/>
+          <h2 class="subtitle has-text-centered" style="font-size: medium;">
+            <b>Overlap Experiment.</b> Audio of 'Dog' mixed with 'Rooster'. Relevant parts are highlighted.
+          </h2>
+        </div>
+        <div class="item">
+          <img src="../../static/images/supplementary/overlap_2.webp" alt="Overlap Dog-Cat" loading="lazy"/>
+          <h2 class="subtitle has-text-centered" style="font-size: medium;">
+            <b>Overlap Experiment.</b> Audio of 'Dog' mixed with 'Cat'. Relevant parts are highlighted.
+          </h2>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<!-- 3D shapes section -->
 <section class="section">
   <div class="container is-max-desktop content">
-    <h2 class="title is-3">Minimal images</h2>
-
-<div class="content has-text-justified">
-  <p>
-      The figure below displays examples of minimal images obtained after meaningfully perturbing 
-      the input image in the wavelet domain.
-    </p>
-  <p>
-    
-  </p>
-</div>
-    
-<!-- Image carousel -->
-<section class="section">
-  <div class="hero-body">
-    <div class="container is-max-desktop">
-      <div id="results-carousel" class="carousel results-carousel">
-       <div class="item">
-        <img src="../../static/images/supplementary/meaningful_1.png" alt="meaningful_1"/>
-      </div>
-  <div class="item">
-        <img src="../../static/images/supplementary/meaningful_2.png" alt="meaningful_1"/>
+    <h2 class="title is-3">Explanations on 3D shapes</h2>
+    <div id="carousel-3d-shapes" class="carousel results-carousel">
+      <div class="item">
+        <img src="../../static/images/supplementary/0.webp" alt="3D Example 0" loading="lazy"/>
+        <h2 class="subtitle has-text-centered" style="font-size: medium;">
+          <b>3DMNIST.</b> 
+        </h2>
       </div>
       <div class="item">
-        <img src="../../static/images/supplementary/meaningful_3.png" alt="meaningful_1"/>
+        <img src="../../static/images/supplementary/2.webp" alt="3D Example 2" loading="lazy"/>
+        <h2 class="subtitle has-text-centered" style="font-size: medium;">
+          <b>3DMNIST.</b> 
+        </h2>
       </div>
+      <div class="item">
+        <img src="../../static/images/supplementary/4.webp" alt="3D Example 4" loading="lazy"/>
+        <h2 class="subtitle has-text-centered" style="font-size: medium;">
+          <b>3DMNIST.</b> 
+        </h2>
+      </div>
+      <div class="item">
+        <img src="../../static/images/supplementary/vesselmnist.webp" alt="VesselMNIST" loading="lazy"/>
+        <h2 class="subtitle has-text-centered" style="font-size: medium;">
+          <b>VesselMNIST3D.</b> 
+        </h2>
+      </div>
+    </div>
   </div>
-
-</div>  
-</div>
-</div>
 </section>
 
 
-  </body>
-  </html>
+</body>
+</html>

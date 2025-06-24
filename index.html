@@ -9,7 +9,7 @@
   <meta property="og:description" content="Project page of the Wavelet Attribution Method (ICML 2025)"/>
   <meta property="og:url" content="URL OF THE WEBSITE"/>
   <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
-  <meta property="og:image" content="static/images/wavelet_banner_1200x630.png" />
+  <meta property="og:image" content="static/images/wavelet_banner_1200x630.webp" />
   <meta property="og:image:width" content="1200"/>
   <meta property="og:image:height" content="630"/>
 
@@ -17,7 +17,7 @@
   <meta name="twitter:title" content="Wavelet attribution method">
   <meta name="twitter:description" content="Project page for the Wavelet Attribution Method (ICML 2025)">
   <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
-  <meta name="twitter:image" content="static/images/your_twitter_banner_image.png">
+  <meta name="twitter:image" content="static/images/your_twitter_banner_image.webp">
   <meta name="twitter:card" content="summary_large_image">
   <!-- Keywords for your paper to be indexed by-->
   <meta name="keywords" content="Interpretability, Feature attribution, Wavelet, Images, Audio, 3D, Volumes">
@@ -25,7 +25,7 @@
 
 
   <title>Wavelet Attribution Method</title>
-  <link rel="icon" type="image/x-icon" href="static/images/favicon-32x32.png">
+  <link rel="icon" type="image/x-icon" href="static/images/favicon-32x32.webp">
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
   rel="stylesheet">
 
@@ -86,7 +86,7 @@
 <body>
 
 
-  <section class="hero is-medium" style="background-image: url('static/images/wavelet_banner_1200x630.png'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+  <section class="hero is-medium" style="background-image: url('static/images/wavelet_banner_1200x630.webp'); background-size: cover; background-position: center; background-repeat: no-repeat;">
     <div class="hero-body">
       <div class="container is-max-desktop">
         <div class="columns is-centered">
@@ -270,7 +270,7 @@
 <section class="section"></section>
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <img src="static/images/WAM_overview.png" alt="Method Overview"/>
+        <img src="static/images/WAM_overview.webp" alt="Method Overview"/>
         <br><br>
       </div>
     </div>
@@ -321,7 +321,7 @@ Click <a href="static/content/method.html">here</a> to learn more about the meth
 
       <div id="results-carousel" class="carousel results-carousel">
        <div class="item">
-        <img src="static/images/image_heatmap_decomp.png" alt="WAM on images"/>
+        <img src="static/images/image_heatmap_decomp.webp" alt="WAM on images" loading="lazy"/>
         <h2 class="subtitle has-text-centered" style="font-size: medium;">
           <b> Image Explanation. </b>
           WAM decomposes important components at multiple scales, revealing <i>what</i> the model focuses on. 
@@ -329,7 +329,7 @@ Click <a href="static/content/method.html">here</a> to learn more about the meth
         </h2>
       </div>
       <div class="item">
-        <img src="static/images/audio_interpretation.jpg" alt="WAM on audio"/>
+        <img src="static/images/audio_interpretation.webp" alt="WAM on audio" loading="lazy"/>
         <h2 class="subtitle has-text-centered" style="font-size: medium;">
           <b> Audio Explanation. </b>
           The audio of the target class ('Crow') is mixed with a corrupting audio ('Chirping birds') to form the input to the classifier. 
@@ -337,7 +337,7 @@ Click <a href="static/content/method.html">here</a> to learn more about the meth
         </h2>
       </div>
       <div class="item">
-        <img src="static/images/voxel_heatmap_decomp.jpg" alt="WAM on voxels"/>
+        <img src="static/images/voxel_heatmap_decomp.webp" alt="WAM on voxels" loading="lazy"/>
         <h2 class="subtitle has-text-centered" style="font-size: medium;">
           <b> Volume Explanation. </b> 
           Multi-scale decomposition of feature importance on voxels. 
@@ -435,12 +435,12 @@ Click <a href="static/content/method.html">here</a> to learn more about the meth
   <div class="container is-max-desktop">
     <h2 class="title is-3">Poster</h2>
     <p>Click on the image to enlarge</p>
-<div style="position: relative; width: 100%; max-width: 720px; padding-top: 100%; margin: 0 auto; cursor: pointer; border-radius: 16px; overflow: hidden;">
-  <img id="poster-thumbnail"
-       src="static/pdfs/poster_WAM_ICML_25_thumbnail_720x720.png"
-       alt="WAM Poster Thumbnail"
-       style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
-</div>
+    <div style="position: relative; width: 100%; max-width: 720px; padding-top: 100%; margin: 0 auto; cursor: pointer; border-radius: 16px; overflow: hidden;">
+      <img id="poster-thumbnail"
+           src="static/pdfs/poster_WAM_ICML_25_thumbnail_720x720.webp"
+           alt="WAM Poster Thumbnail"
+           style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+    </div>
   </div>
 </section>
 
@@ -448,37 +448,44 @@ Click <a href="static/content/method.html">here</a> to learn more about the meth
 <div class="modal" id="poster-modal">
   <div class="modal-background"></div>
   <div class="modal-content">
-    <p class="image">
-      <img src="static/pdfs/poster_WAM_ICML_25.png" alt="Full-size Poster">
+    <p class="image" id="modal-image-container">
+      <!-- Full-size poster img will be inserted here dynamically -->
     </p>
   </div>
   <button class="modal-close is-large" aria-label="close"></button>
 </div>
 
 <script>
-  // Modal toggle logic
+  // Modal toggle logic with lazy loading full image on click
   document.addEventListener('DOMContentLoaded', () => {
     const thumbnail = document.getElementById('poster-thumbnail');
     const modal = document.getElementById('poster-modal');
     const modalClose = modal.querySelector('.modal-close');
     const modalBg = modal.querySelector('.modal-background');
+    const modalImageContainer = document.getElementById('modal-image-container');
 
     thumbnail.addEventListener('click', () => {
+      // Create full-size image element if it doesn't exist
+      if (!modalImageContainer.querySelector('img')) {
+        const fullImage = document.createElement('img');
+        fullImage.src = 'static/pdfs/poster_WAM_ICML_25.webp';
+        fullImage.alt = 'Full-size Poster';
+        modalImageContainer.appendChild(fullImage);
+      }
       modal.classList.add('is-active');
     });
 
-    modalClose.addEventListener('click', () => {
+    const closeModal = () => {
       modal.classList.remove('is-active');
-    });
+    };
 
-    modalBg.addEventListener('click', () => {
-      modal.classList.remove('is-active');
-    });
+    modalClose.addEventListener('click', closeModal);
+    modalBg.addEventListener('click', closeModal);
   });
 </script>
 
+<!-- End paper poster -->
 
-<!--End paper poster -->
 
 
 <!--BibTex citation -->
