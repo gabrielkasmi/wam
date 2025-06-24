@@ -81,6 +81,34 @@
 }
 </style>
 
+<style>
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    font-size: 0.95rem;
+  }
+  th, td {
+    border: 1px solid #ccc;
+    padding: 8px 10px;
+    text-align: center;
+  }
+  th {
+    background-color: #f7f7f7;
+    font-weight: bold;
+  }
+  .bold {
+    font-weight: bold;
+  }
+  .underline {
+    text-decoration: underline;
+  }
+  caption {
+    caption-side: top;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+</style>
 
 </head>
 <body>
@@ -133,19 +161,68 @@
 <section class="section"></section>
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <img src="../../static/animations/gif-wavelet-transform.gif" alt="Method Overview"/>
-        <br><br>
+        
+
+<table>
+  <caption>Faithfulness (Faith), Insertion (Ins), and Deletion (Del) scores across modalities.</caption>
+  <thead>
+    <tr>
+      <th rowspan="2">Method</th>
+      <th colspan="3">Audio (ResNet, ESC-50)</th>
+      <th colspan="3">Images (EfficientNet, ImageNet)</th>
+      <th colspan="3">Volumes (3D Former, AdrenalMNIST3D)</th>
+    </tr>
+    <tr>
+      <th>Ins ↑</th><th>Del ↓</th><th>Faith ↑</th>
+      <th>Ins ↑</th><th>Del ↓</th><th>Faith ↑</th>
+      <th>Ins ↑</th><th>Del ↓</th><th>Faith ↑</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Integrated Gradients</td>
+      <td>0.267</td><td class="bold">0.047</td><td class="bold">0.264</td>
+      <td>0.113</td><td>0.113</td><td>0.000</td>
+      <td>0.666</td><td>0.743</td><td>-0.077</td>
+    </tr>
+    <tr>
+      <td>SmoothGrad</td>
+      <td>0.251</td><td class="underline">0.067</td><td>0.184</td>
+      <td>0.129</td><td>0.119</td><td>0.010</td>
+      <td>0.680</td><td>0.731</td><td>-0.051</td>
+    </tr>
+    <tr>
+      <td>GradCAM</td>
+      <td>0.274</td><td>0.201</td><td>0.072</td>
+      <td>0.364</td><td>0.303</td><td>0.061</td>
+      <td>0.689</td><td>0.744</td><td>-0.055</td>
+    </tr>
+    <tr>
+      <td>Saliency</td>
+      <td>0.220</td><td>0.154</td><td>0.066</td>
+      <td>0.148</td><td>0.140</td><td>0.008</td>
+      <td>0.751</td><td>0.742</td><td>0.009</td>
+    </tr>
+    <tr>
+      <td><i>WAM<sub>IG</sub> (ours)</i></td>
+      <td class="underline">0.436</td><td>0.260</td><td>0.176</td>
+      <td class="bold">0.447</td><td class="bold">0.049</td><td class="bold">0.370</td>
+      <td class="bold">0.719</td><td class="bold">0.621</td><td class="bold">0.098</td>
+    </tr>
+    <tr>
+      <td><i>WAM<sub>SG</sub> (ours)</i></td>
+      <td class="bold">0.449</td><td>0.252</td><td class="underline">0.197</td>
+      <td class="underline">0.419</td><td class="underline">0.097</td><td class="underline">0.350</td>
+      <td class="underline">0.718</td><td class="underline">0.648</td><td class="underline">0.070</td>
+    </tr>
+  </tbody>
+</table>
+
+Notes:
+  
       </div>
     </div>
-    <div class="columns is-centered has-text-centered">
-      Illustration of the wavelet decomposition. 
-      </div>
-  
-  <div class="content has-text-justified">
-<p>
-Some more text here
-</p>
-</div>
+    
 </div>  
 </div>
 </section>
