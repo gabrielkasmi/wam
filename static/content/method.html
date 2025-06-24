@@ -183,7 +183,7 @@
     \langle g, \psi_{j,k} \rangle\psi_{j,k}(x), \tag{4}$$
   </p>
 <p>
-  where $\mathcal{W}_{\mathrm{DWT}}(g)(j,k)\=\langle g, \psi_{j,k} \rangle$.
+  where $\mathcal{W}_{\mathrm{DWT}}(g)(j,k)=\langle g, \psi_{j,k} \rangle$.
 </p>
 <p>
   The figure below illustrates the process of decomposing an input image into its wavelet components.
@@ -290,7 +290,7 @@ localized in both space and frequency — are most relevant for the prediction.
 Since $\mathbf{f}_c$ is not necessarily continuously differentiable, 
 the raw gradients can vary abruptly, especially at fine scales. 
 To address this, we apply a smoothing strategy inspired by 
-SmoothGrad (Smilkov et al., 2017), which averages gradients over noisy inputs:
+SmoothGrad (Smilkov et al., 2017), which averages gradients over a set of noisy inputs.
 </p>
 
 <p style="text-align: center;">
@@ -348,11 +348,11 @@ by integrating its effect along a straight-line path in the wavelet domain.
     </div>
     <div class="columns is-centered has-text-centered">
       <p>
-      <b>Feature attribution in the wavelet domain.</b> First one computes the wavelet transform 
+      <b>Feature attribution in the wavelet domain.</b> First, one computes the wavelet transform 
       of the input signal and requires the gradients with respect to these wavelet coefficients.
-      The wavelet transform is then inversed to obtain the original input, which is passed to the model.
+      The wavelet transform is then inverted to obtain the original input, which is passed to the model.
       Then, the gradients are computed with respect to the model output. Two averaging methods are 
-      proposed in this work: smoothing and path integration. Smoothing emphasizes on the importance 
+      proposed in this work: smoothing and path integration. Smoothing emphasizes the importance 
       of each coefficient within each scale, while path integration highlights the interscale
       dependencies and thus shows that the approximation coefficients are relatively more important
       than the detail coefficients.
