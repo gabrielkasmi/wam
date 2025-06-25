@@ -1,12 +1,21 @@
 # One Wave To Explain Them All: A Unifying Perspective On Feature Attribution (ICML 2025)
 
-Official repository for the wavelet attribution method (WAM). This repository contains the source code of the method and the scripts necessary to replicate the quantitative benchmarks on various input modalities.
+Official repository for the wavelet attribution method (WAM). Project page : [https://gabrielkasmi.github.io/wam](https://gabrielkasmi.github.io/wam)
 
-Project page : [https://gabrielkasmi.github.io/wam](https://gabrielkasmi.github.io/wam)
+![WAM Method Overview](assets/WAM_overview.webp)
+*Wavelet Attribution Method (WAM) decomposes and analyzes feature attributions across multiple frequency scales*
+
 
 ## Quick start
 
-Try WAM on an image example [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/https://github.com/gabrielkasmi/wam/tree/main/notebooks)
+### Option 1: Run on Google Colab (Recommended)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](YOUR_COLAB_LINK_HERE)
+
+### Option 2: Run Locally
+
+1. Clone the repository: `git clone https://github.com/gabrielkasmi/wam.git`
+2. Install dependencies: `pip install -r requirements.txt`
+3. Open `wam-example.ipynb` in Jupyter
 
 ## Environment Setup
 
