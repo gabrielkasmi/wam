@@ -4,6 +4,10 @@ Official repository for the wavelet attribution method (WAM). This repository co
 
 Project page : [https://gabrielkasmi.github.io/wam](https://gabrielkasmi.github.io/wam)
 
+## Quick start
+
+Try WAM on an image example [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/gabrielkasmi/wam/blob/main/notebooks/wam-example.ipynb)
+
 ## Environment Setup
 
 ### Prerequisites
