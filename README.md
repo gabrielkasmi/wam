@@ -10,7 +10,7 @@ Official repository for the wavelet attribution method (WAM). Project page : [ht
 ## Quick start
 
 ### Option 1: Run on Google Colab (Recommended)
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](YOUR_COLAB_LINK_HERE)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/gabrielkasmi/wam/blob/main/wam_example.ipynb)
 
 ### Option 2: Run Locally
 
