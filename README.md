@@ -2,7 +2,7 @@
 
 Official repository for the wavelet attribution method (WAM). Project page : [https://gabrielkasmi.github.io/wam](https://gabrielkasmi.github.io/wam)
 
-![WAM Method Overview](assets/WAM_overview.webp)
+![WAM Method Overview](assets/WAM_overview.png)
 *Wavelet Attribution Method (WAM) decomposes and analyzes feature attributions across multiple frequency scales*
 
 
