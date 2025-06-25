@@ -3,7 +3,8 @@
 Official repository for the wavelet attribution method (WAM). Project page : [https://gabrielkasmi.github.io/wam](https://gabrielkasmi.github.io/wam)
 
 ![WAM Method Overview](assets/WAM_overview.png)
-*Wavelet Attribution Method (WAM) decomposes and analyzes feature attributions across multiple frequency scales*
+
+*<strong>Feature attribution in the wavelet domain.</strong> WAM explains any input modality by decomposing the model’s decision in the wavelet domain. It computes the gradient of the model’s prediction with respect to the wavelet coefficients of the input modality (audio, images, volumes). Unlike pixels, wavelet coefficients preserve structural information about the input signal, offering deeper insights into the model’s behavior and going beyond where it focuses.* 
 
 
 ## Quick start
@@ -130,23 +131,6 @@ python test_environment.py
 ```
 
 This will test all dependencies and provide detailed feedback about your setup.
-
-### Quick Start
-
-1. **Activate your environment**
-   ```bash
-   conda activate wam  # or source wam_env/bin/activate
-   ```
-
-2. **Open the example notebook**
-   ```bash
-   jupyter notebook example.ipynb
-   ```
-
-3. **Or run the example directly**
-   ```bash
-   python example.py
-   ```
 
 ### Project Structure
 
