@@ -6,7 +6,7 @@ Project page : [https://gabrielkasmi.github.io/wam](https://gabrielkasmi.github.
 
 ## Quick start
 
-Try WAM on an image example [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/gabrielkasmi/wam/blob/main/notebooks/wam-example.ipynb)
+Try WAM on an image example [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/https://github.com/gabrielkasmi/wam/tree/main/notebooks)
 
 ## Environment Setup
 
