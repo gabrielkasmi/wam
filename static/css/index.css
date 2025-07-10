@@ -6,16 +6,14 @@ body {
 /* Modern scroll animations */
 .fade-in-section {
   opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  transition: opacity 0.8s ease-out;
 }
 
 .fade-in-section.is-visible {
   opacity: 1;
-  transform: translateY(0);
 }
 
-/* Enhanced button interactions */
+/* Enhanced button interactions - less pronounced */
 .external-link.button {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
@@ -24,12 +22,12 @@ body {
 }
 
 .external-link.button:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .external-link.button:active {
-  transform: translateY(-1px);
+  transform: translateY(0);
   transition: all 0.1s ease;
 }
 
@@ -87,7 +85,7 @@ body {
   width: 100%;
 }
 
-/* Enhanced carousel interactions */
+/* Enhanced carousel interactions - less movement */
 .results-carousel .item {
   margin: 5px;
   overflow: hidden;
@@ -98,8 +96,8 @@ body {
 }
 
 .results-carousel .item:hover {
-  transform: scale(1.02);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transform: scale(1.01);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
 }
 
 .results-carousel .item img {
@@ -108,12 +106,12 @@ body {
 }
 
 .results-carousel .item:hover img {
-  transform: scale(1.05);
+  transform: scale(1.02);
 }
 
 /* Modern section transitions */
 .section {
-  transition: all 0.6s ease;
+  transition: opacity 0.6s ease;
 }
 
 /* Enhanced hero section */
@@ -139,17 +137,15 @@ body {
 .hero .hero-body {
   position: relative;
   z-index: 1;
-  animation: fadeInUp 1s ease-out;
+  animation: fadeIn 1s ease-out;
 }
 
-@keyframes fadeInUp {
+@keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(30px);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
   }
 }
 
@@ -194,22 +190,22 @@ body {
   background: #000;
 }
 
-/* Enhanced content sections */
+/* Enhanced content sections - no movement */
 .content p {
-  transition: all 0.3s ease;
+  transition: opacity 0.3s ease;
 }
 
 .content p:hover {
-  transform: translateX(5px);
+  opacity: 0.9;
 }
 
-/* Modern image interactions */
+/* Modern image interactions - subtle */
 img {
   transition: all 0.3s ease;
 }
 
 img:hover {
-  transform: scale(1.02);
+  transform: scale(1.01);
 }
 
 /* Enhanced footer */

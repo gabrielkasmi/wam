@@ -44,7 +44,7 @@ $(document).ready(function() {
         
         buttons.forEach(button => {
             button.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-3px) scale(1.02)';
+                this.style.transform = 'translateY(-1px) scale(1.01)';
             });
             
             button.addEventListener('mouseleave', function() {
@@ -70,8 +70,8 @@ $(document).ready(function() {
         
         carouselItems.forEach(item => {
             item.addEventListener('mouseenter', function() {
-                this.style.transform = 'scale(1.02)';
-                this.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.1)';
+                this.style.transform = 'scale(1.01)';
+                this.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.08)';
             });
             
             item.addEventListener('mouseleave', function() {
@@ -119,7 +119,7 @@ $(document).ready(function() {
         
         images.forEach(img => {
             img.addEventListener('mouseenter', function() {
-                this.style.transform = 'scale(1.02)';
+                this.style.transform = 'scale(1.01)';
                 this.style.transition = 'transform 0.3s ease';
             });
             
@@ -135,12 +135,10 @@ $(document).ready(function() {
         const heroContent = document.querySelector('.hero .hero-body');
         if (heroContent) {
             heroContent.style.opacity = '0';
-            heroContent.style.transform = 'translateY(30px)';
             
             setTimeout(() => {
-                heroContent.style.transition = 'all 1s ease-out';
+                heroContent.style.transition = 'opacity 1s ease-out';
                 heroContent.style.opacity = '1';
-                heroContent.style.transform = 'translateY(0)';
             }, 100);
         }
     }
