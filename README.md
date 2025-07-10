@@ -6,6 +6,8 @@ Official repository for the wavelet attribution method (WAM). Project page : [ht
 
 *<strong>Feature attribution in the wavelet domain.</strong> WAM explains any input modality by decomposing the model’s decision in the wavelet domain. It computes the gradient of the model’s prediction with respect to the wavelet coefficients of the input modality (audio, images, volumes). Unlike pixels, wavelet coefficients preserve structural information about the input signal, offering deeper insights into the model’s behavior and going beyond where it focuses.* 
 
+The code for replicating the results will be added soon.
+
 
 ## Quick start
 
