@@ -113,18 +113,6 @@ $(document).ready(function() {
         }
     }
 
-    // Parallax effect for hero section
-    function addParallaxEffect() {
-        const hero = document.querySelector('.hero');
-        if (hero) {
-            window.addEventListener('scroll', () => {
-                const scrolled = window.pageYOffset;
-                const rate = scrolled * -0.5;
-                hero.style.transform = `translateY(${rate}px)`;
-            });
-        }
-    }
-
     // Enhanced image interactions
     function enhanceImages() {
         const images = document.querySelectorAll('img:not(.modal img)');
@@ -164,7 +152,6 @@ $(document).ready(function() {
         enhanceCarousel();
         enableSmoothScroll();
         enhanceModal();
-        addParallaxEffect();
         enhanceImages();
         addLoadingAnimations();
     }
